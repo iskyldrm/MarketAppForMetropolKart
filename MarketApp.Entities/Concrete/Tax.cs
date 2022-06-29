@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MarketApp.Entities.Concrete
 {
-    public class Kdv : IBaseEntity<int>, IEntity
+    public class Tax : IBaseEntity<int>, IEntity
     {
         /// <summary>
         /// benzersiz kolon ID değeri. Generi olarak değiştirilebilir

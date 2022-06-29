@@ -22,7 +22,7 @@ namespace MarketApp.Entities.Concrete
         /// </summary>
         private string SKUBarkod;
         //Rastgele kod oluşturmaya çalıştım
-        public string? MyProperty
+        public string? SKU
         {
             get { return SKUBarkod; }
             set { 
@@ -52,7 +52,7 @@ namespace MarketApp.Entities.Concrete
 
         public int? ImageId { get; set; }
 
-        public int? KdvId { get; set; }
+        public int? TaxId { get; set; }
 
         /// <summary>
         /// Satılabilecek en küçük birim içindeki miktar
@@ -90,7 +90,7 @@ namespace MarketApp.Entities.Concrete
 
         public virtual Image? Image { get; set; }
 
-        public virtual Kdv? Kdv { get; set; }
+        public virtual Tax? Kdv { get; set; }
 
         /// <summary>
         /// Üretilme tarihi
