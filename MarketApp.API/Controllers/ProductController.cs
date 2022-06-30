@@ -70,9 +70,13 @@ namespace MarketApp.API.Controllers
         }
 
         // DELETE api/<ProductController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        [ActionName("Delete")]
+        public IActionResult Delete([FromBody]Product product)
         {
+            var result = productManager.Delete(product);
+
+            return Ok(result);
         }
     }
 }
