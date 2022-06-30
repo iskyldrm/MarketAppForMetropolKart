@@ -1,0 +1,60 @@
+﻿@page
+@model MarketApp.WebApp.Pages.ProductDeleteModel
+@{
+}
+
+<div class="text-center">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-outline w-25 mb-2">
+        <input asp-for="Input.Id" required class="form-control form-control-lg" id="form3Example3" placeholder="Ürün Id giriniz" />
+    </div>
+    <div class="col-md-4 px-6">
+        <input id="registerSubmit" type="submit" class="w-50 btn btn-lg btn-success" value="Sil">
+    </div>
+    </form>
+    
+    <table class="table">
+        <thead>
+            <tr>
+
+                <td>Id</td>
+                <td>Ürün İsmi</td>
+                <td>Kategori</td>
+                <td>Ürün Açıklaması</td>
+                <td>Fiyat</td>
+                <td>Stok Adedi</td>
+                <td>Satış Durumu</td>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            <form method="post" enctype="multipart/form-data">
+                @foreach (var item in Model.ProductsWeb)
+                {
+
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.ProductName</td>
+                    <td>@item.ProductDescirption</td>
+                    <td>@item.CategoryID</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@item.QuantityPerUnit</td>
+                        @{
+                            if (item.Discontinued == true)
+                            {
+                            <td>Satışta</td>
+                            }
+                            else
+                            {
+                            <td>Satışı Yok</td>
+                            }
+
+                        }
+
+                </tr>
+                }
+            </form>
+        </tbody>
+    </table>
+</div>

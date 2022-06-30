@@ -56,7 +56,7 @@ namespace MarketApp.API.Controllers
         // POST api/<ProductController>
         // https://localhost:7210/api/Product
         [HttpPost]
-        public IActionResult Post([FromBody]Product  product)
+        public IActionResult Add([FromBody]Product  product)
         {
             var result = productManager.Add(product);
 
@@ -64,14 +64,16 @@ namespace MarketApp.API.Controllers
         }
 
         // PUT api/<ProductController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IActionResult Update([FromBody] Product product)
         {
+            var result = productManager.Update(product);
+
+            return Ok(result);
         }
 
         // DELETE api/<ProductController>/5
         [HttpDelete]
-        [ActionName("Delete")]
         public IActionResult Delete([FromBody]Product product)
         {
             var result = productManager.Delete(product);

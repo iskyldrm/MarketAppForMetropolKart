@@ -1,0 +1,129 @@
+﻿@page
+@model MarketApp.WebApp.Pages.Shared.ProductUpdateModel
+@{
+}
+<div class="container">
+    <div class="row">
+        <div class="text-center">
+            <form id="ProductAddForm" asp-route-returnUrl="" method="post" enctype="multipart/form-data">
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <td>Ürün İsmi</td>
+                        <td>Ürün Açıklaması</td>
+                        <td>Kategori</td>
+                        <td>Tefarikçi</td>
+                        <td>KDV Tipi</td>
+                        <td>Tavsiye E.S.F</td>
+                        <td>Fiyat</td>
+                        <td>Stok Adedi</td>
+                        <td>Paket İçeriği</td>
+                        <td>Satış Durumu</td>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <select asp-for="Input.ProductName" required class="form-control" asp-items="Model.SelectedProduct">
+                                <option value="" selected disabled hidden>Ürün seçiniz</option>
+                            </select>
+                        </td>
+                        <td><input asp-for="Input.ProductDescirption" class="form-control" placeholder="Açıklmama" /></td>
+                        <td>
+                            <select asp-for="Input.CategoryID" required class="form-control" asp-items="Model.Categories">
+                                <option value="" selected disabled hidden>Kategori seçiniz</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select asp-for="Input.SupplierID" required class="form-control" asp-items="Model.Suppliers">
+                                <option value="" selected disabled hidden>Tedarikçi seçiniz</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select asp-for="Input.TaxId" required class="form-control" asp-items="Model.Taxs">
+                                <option value="" selected disabled hidden>Vergi Türü seçiniz</option>
+                            </select>
+                        </td>
+                        <td><input asp-for="Input.MSRP" class="form-control" placeholder="T.E.S Fiyatı" /></td>
+                        <td><input asp-for="Input.UnitPrice" class="form-control" placeholder="Ürün Adı" /></td>
+                        <td><input asp-for="Input.UnitsInStock" class="form-control" placeholder="Ürün Adı" /></td>
+                        <td><input asp-for="Input.QuantityPerUnit" class="form-control" placeholder="Ürün Adı" /></td>
+                        <td>
+                            <select asp-for="Input.Discontinued" class="form-control" aria-required="true">
+                                <option value="" selected disabled hidden>Satış Durumu</option>
+                                <option value="true">Satışta</option>
+                                <option value="false">Satışı yok</option>
+                            </select>
+                        </td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <div class="col-md-4 px-6">
+                    <input id="registerSubmit" type="submit" class="btn btn-lg btn-success" value="Güncelle">
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <table class="table">
+                    <thead>
+                        <tr>
+
+
+                            <td>Ürün İsmi</td>
+                            <td>Ürün Açıklaması</td>
+                            <td>Kategori</td>
+                            <td>Tedarikçi</td>
+                            <td>KDV Tipi</td>
+                            <td>Fiyat</td>
+                            <td>Stok Adedi</td>
+                            <td>Satış Durumu</td>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach (var item in Model.ProductsWeb)
+                        {
+
+                            <tr>
+
+                                <td>@item.ProductName</td>
+                                <td>@item.ProductDescirption</td>
+                                <td>@item.CategoryID</td>
+                                <td>@item.SupplierID</td>
+                                <td>@item.TaxId</td>
+                                <td>@item.UnitPrice</td>
+                                <td>@item.UnitsInStock</td>
+                                @{
+                                    if (item.Discontinued == true)
+                                    {
+                                        <td>Satışta</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Satışı Yok</td>
+                                    }
+
+                                }
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
