@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketApp.Entities", "Marke
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketApp.DAL", "MarketApp.DAL\MarketApp.DAL.csproj", "{B7C1865E-D474-426F-ACC6-5F6B2AEB680E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketApp.BL", "MarketApp.BL\MarketApp.BL.csproj", "{F0396154-49A2-469E-A422-DB25CB49A44B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketApp.BL", "MarketApp.BL\MarketApp.BL.csproj", "{F0396154-49A2-469E-A422-DB25CB49A44B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketApp.API", "MarketApp.API\MarketApp.API.csproj", "{78B520AD-537D-4DE1-9257-8B4F218E58EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketApp.API", "MarketApp.API\MarketApp.API.csproj", "{78B520AD-537D-4DE1-9257-8B4F218E58EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketApp.WebApp", "MarketApp.WebApp\MarketApp.WebApp.csproj", "{262ADFEE-3C72-4FB4-8304-CAB1141BA905}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{78B520AD-537D-4DE1-9257-8B4F218E58EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78B520AD-537D-4DE1-9257-8B4F218E58EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78B520AD-537D-4DE1-9257-8B4F218E58EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{262ADFEE-3C72-4FB4-8304-CAB1141BA905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262ADFEE-3C72-4FB4-8304-CAB1141BA905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262ADFEE-3C72-4FB4-8304-CAB1141BA905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262ADFEE-3C72-4FB4-8304-CAB1141BA905}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
