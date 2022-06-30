@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MarketApp.API.Models;
 using MarketApp.BL.Abstract;
+using MarketApp.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -53,10 +54,13 @@ namespace MarketApp.API.Controllers
         }
 
         // POST api/<ProductController>
+        // https://localhost:7210/api/Product
         [HttpPost]
-        public void Post([FromBody]ProductDTO  productDTO)
+        public IActionResult Post([FromBody]Product  product)
         {
+            var result = productManager.Add(product);
 
+            return Ok(result);
         }
 
         // PUT api/<ProductController>/5

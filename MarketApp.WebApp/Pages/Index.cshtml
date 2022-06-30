@@ -9,17 +9,17 @@
     <thead>
         <tr>
             
-            <td>Product Name</td>
-            <td>dis</td>
-            <td>SKUBarkod</td>
-            <td>Product Name</td>
-            <td>dis</td>
-            <td>SKUBarkod</td>
-            <td>Product Name</td>
-            <td>dis</td>
-            <td>SKUBarkod</td>
-            <td>Product Name</td>
-            <td>dis</td>
+            <td>SKU Barkod</td>
+            <td>Ürün İsmi</td>
+            <td>Kategori</td>
+            <td>Ürün Açıklaması</td>
+            <td>Tefarikçi</td>
+            <td>KDV Tipi</td>
+            <td>Tavsiye E.S.F</td>
+            <td>Fiyat</td>
+            <td>Stok Adedi</td>
+            <td>Paket İçeriği</td>
+            <td>Satış Durumu</td>
 
         </tr>
     </thead>
@@ -39,7 +39,18 @@
                 <td>@item.UnitPrice</td>
                 <td>@item.UnitsInStock</td>
                 <td>@item.QuantityPerUnit</td>
-                <td>@item.Discontinued</td>
+                @{
+                    if (item.Discontinued==true)
+                        {
+                            <td>Satışta</td>
+                        }
+                        else
+                        {
+                            <td>Satışı Yok</td>
+                        }
+                    
+                }
+                
             </tr>
         }
     </tbody>

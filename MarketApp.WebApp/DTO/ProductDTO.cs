@@ -25,5 +25,7 @@
         public short? UnitsInStock { get; set; }
 
         public bool Discontinued { get; set; }
+
+        
     }
 }

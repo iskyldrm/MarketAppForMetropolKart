@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketApp.BL", "MarketApp.B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketApp.API", "MarketApp.API\MarketApp.API.csproj", "{78B520AD-537D-4DE1-9257-8B4F218E58EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketApp.WebApp", "MarketApp.WebApp\MarketApp.WebApp.csproj", "{262ADFEE-3C72-4FB4-8304-CAB1141BA905}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketApp.WebApp", "MarketApp.WebApp\MarketApp.WebApp.csproj", "{262ADFEE-3C72-4FB4-8304-CAB1141BA905}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

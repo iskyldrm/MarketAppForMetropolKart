@@ -1,0 +1,63 @@
+﻿@page
+@model MarketApp.WebApp.Pages.ProductAddModel
+@{
+}
+
+<div class="container mt-5">
+    <form id="ProductAddForm" asp-route-returnUrl="" method="post" enctype="multipart/form-data">
+    <div class="row">
+        
+            <div class="col-6">
+                <div class="form-outline w-75 mb-2">
+                    <input asp-for="Input.ProductName" required class="form-control form-control-lg" id="form3Example3" placeholder="Ürün adını giriniz" />
+                </div>
+                <div class="form-outline w-75 mb-2">
+                    <input asp-for="Input.ProductDescirption" required class="form-control form-control-lg" id="form3Example3" placeholder="Ürün Açıklamasını giriniz" />
+                </div>
+                <div class="form-outline w-75 mb-2">
+                    <select asp-for="Input.CategoryID" required class="form-control form-control-lg" asp-items="Model.Categories">
+                        <option value="" selected disabled hidden>Kategori seçiniz</option>
+                    </select>
+                </div>
+                <div class="form-outline w-75 mb-2">
+                    <select asp-for="Input.SupplierID" required class="form-control form-control-lg" asp-items="Model.Suppliers">
+                        <option value="" selected disabled hidden>Tedarikçi seçiniz</option>
+                    </select>
+                </div>
+                <div class="form-outline w-75 mb-2">
+                    <select asp-for="Input.TaxId" required class="form-control form-control-lg" asp-items="Model.Taxs">
+                        <option value="" selected disabled hidden>Vergi Türü seçiniz</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-outline w-75 mb-2">
+                    <input asp-for="Input.QuantityPerUnit" required class="form-control form-control-lg" id="form3Example3" placeholder="Bir Adet miktarını giriniz" />
+                </div>
+                <div class="form-outline w-75 mb-2">
+                    <input asp-for="Input.UnitPrice" required class="form-control form-control-lg" id="form3Example3" placeholder="Satılacak Tutarı giriniz" />
+                </div>
+                <div class="form-outline w-75 mb-2">
+                    <input asp-for="Input.MSRP" required class="form-control form-control-lg" id="form3Example3" placeholder="Tavsiye edilen Tutarı giriniz" />
+                </div>
+                <div class="form-outline w-75 mb-2">
+                    <input asp-for="Input.UnitsInStock" required class="form-control form-control-lg" id="form3Example3" placeholder="Stok miktarını giriniz" />
+
+                </div>
+                <div class="form-outline w-75 mb-2">
+                    <select asp-for="Input.Discontinued" class="form-control form-control-lg mb-2" aria-required="true">
+                        <option value="" selected disabled hidden>Satış Durumu</option>
+                        <option value="true">Satışta</option>
+                        <option value="false">Satışı yok</option>
+                    </select>
+                </div>
+            </div>
+       
+    </div>
+    <div>
+        <div class="col-md-4 px-6">
+            <input id="registerSubmit" type="submit" class="w-50 btn btn-lg btn-success" value="Ürün Ekle">
+        </div>
+    </div>
+     </form>
+</div>
