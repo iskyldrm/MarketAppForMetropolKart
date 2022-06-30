@@ -1,4 +1,6 @@
-﻿using MarketApp.WebApp.DTO;
+﻿using AutoMapper;
+using MarketApp.BL.Abstract;
+using MarketApp.WebApp.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Net;
@@ -9,10 +11,26 @@ namespace MarketApp.WebApp.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly IProductManager productManager;
+        private readonly IMapper mapper;
+        private readonly ICatagoryManager catagoryManager;
+        private readonly ISupplierManager supplierManager;
+        private readonly ITaxManager taxManager;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel
+            (ILogger<IndexModel> logger,
+            IProductManager productManager,
+            IMapper mapper,
+            ICatagoryManager catagoryManager,
+            ISupplierManager supplierManager,
+            ITaxManager taxManager)
         {
             _logger = logger;
+            this.productManager = productManager;
+            this.mapper = mapper;
+            this.catagoryManager = catagoryManager;
+            this.supplierManager = supplierManager;
+            this.taxManager = taxManager;
         }
         public List<ProductDTO> ProductsWeb { get; set; }
 
@@ -33,14 +51,12 @@ namespace MarketApp.WebApp.Pages
 
             }
             var products = JsonSerializer.Deserialize<List<ProductDTO>>(Products, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            foreach (var item in products)
-            {
-                ProductDTO productDTO = new ProductDTO();
-                productDTO.SKU = item.SKU;
-                productDTO.ProductName = item.ProductName;
-                productDTO.Discontinued = item.Discontinued;
-                ProductsWeb.Add(productDTO);
-            }
+            IList<ProductDTO> list = mapper.Map<IList<ProductDTO>>(products);
+            var taxsList = taxManager.GetAll();
+            var supplierList = supplierManager.GetAll();
+            var categoryList = catagoryManager.GetAll();
+
+            ProductsWeb = list.ToList();
         }
     }
 }

@@ -6,4 +6,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MarketApp.BL\MarketApp.BL.csproj" />
+    <ProjectReference Include="..\MarketApp.Entities\MarketApp.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

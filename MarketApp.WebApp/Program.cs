@@ -1,7 +1,17 @@
+using MarketApp.BL.Abstract;
+using MarketApp.BL.Concrete;
+using MarketApp.WebApp.AutoMapper;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<ITaxManager, TaxManager>();
+builder.Services.AddScoped<IProductManager, ProductManager>();
+builder.Services.AddScoped<ISupplierManager, SupplierManager>();
+builder.Services.AddScoped<ICatagoryManager, CategoryManager>();
+builder.Services.AddScoped<ITaxManager, TaxManager>();
+builder.Services.AddAutoMapper(typeof(ProductMap));
 
 var app = builder.Build();
 
