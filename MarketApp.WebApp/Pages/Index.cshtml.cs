@@ -33,30 +33,42 @@ namespace MarketApp.WebApp.Pages
             this.supplierManager = supplierManager;
             this.taxManager = taxManager;
         }
+        /// <summary>
+        /// Search işlemi için inputtan gelen veriyi tutmak ve ikinci gGet metodu çalışmasında kullanılması için.
+        /// </summary>
         [BindProperty(SupportsGet = true)]
         public string SearchString { get; set; }
         
-
+        /// <summary>
+        /// Seriliaze edilen apı datasını ekrana basmak için yazıldı.
+        /// </summary>
         public List<ProductDTO> ProductsWeb { get; set; }
 
         public void OnGet()
         {
             ProductsWeb = new List<ProductDTO>();
-                HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create($"https://localhost:7210/api/Product");
-                httpWebRequest.Method = "GET";
 
-                string Products = string.Empty;
-                using (HttpWebResponse response1 = (HttpWebResponse)httpWebRequest.GetResponse())
-                {
-                    Stream stream = response1.GetResponseStream();
-                    StreamReader reader = new StreamReader(stream);
-                    Products = reader.ReadToEnd();
-                    reader.Close();
-                    stream.Close();
+            #region GetAll Rest API
+            HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create($"https://localhost:7210/api/Product");
+            httpWebRequest.Method = "GET";
 
-                }
-                var products = JsonSerializer.Deserialize<List<ProductDTO>>(Products, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-                IList<ProductDTO> list = mapper.Map<IList<ProductDTO>>(products);
+            string Products = string.Empty;
+            using (HttpWebResponse response1 = (HttpWebResponse)httpWebRequest.GetResponse())
+            {
+                Stream stream = response1.GetResponseStream();
+                StreamReader reader = new StreamReader(stream);
+                Products = reader.ReadToEnd();
+                reader.Close();
+                stream.Close();
+
+            }
+            var products = JsonSerializer.Deserialize<List<ProductDTO>>(Products, new JsonSerializerOptions { PropertyNameCaseInsensitive = true }); 
+            #endregion
+
+            //Gelen productsların maplenmesi
+            IList<ProductDTO> list = mapper.Map<IList<ProductDTO>>(products);
+
+            #region Filtreli GetAll Rest API
             if (!string.IsNullOrEmpty(SearchString))
             {
                 httpWebRequest = (HttpWebRequest)HttpWebRequest.Create($"https://localhost:7210/api/Product?input={SearchString}");
@@ -74,8 +86,9 @@ namespace MarketApp.WebApp.Pages
                 }
                 products = JsonSerializer.Deserialize<List<ProductDTO>>(Products, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 list = mapper.Map<IList<ProductDTO>>(products);
-            }
-
+            } 
+            #endregion
+            //cs.htmlde dataya erişim
             ProductsWeb = list.ToList();
             
 

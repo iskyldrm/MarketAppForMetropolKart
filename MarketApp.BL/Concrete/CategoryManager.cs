@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace MarketApp.BL.Concrete
 {
+    /// <summary>
+    /// Ürün güncelleme işlemi isme göre yapıldığı için ikinci aynı bir isim eklenmemesi gerekiyor.
+    /// </summary>
     public class CategoryManager:ManagerBase<Category>,ICatagoryManager
     {
+        /// <summary>
+        /// Ürün güncelleme işlemi isme göre yapıldığı için ikinci aynı bir isim eklenmemesi gerekiyor.
+        /// </summary>
         public override int Add(Category input)
         {
 

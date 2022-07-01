@@ -38,9 +38,10 @@ namespace MarketApp.WebApp.Pages.Shared
         [BindProperty]
         public InputModel Input { get; set; }
 
+        //Inputlar için gerekli model
         public class InputModel
         {
-            public int ProductName { get; set; }
+            public int ProductID { get; set; }
 
             public string? ProductDescirption { get; set; }
 
@@ -67,12 +68,15 @@ namespace MarketApp.WebApp.Pages.Shared
         public SelectList Taxs { get; set; }
         public void OnGet()
         {
+            //Seçilecek üründe update edilebilcek selectlistler
             SelectedProduct = new SelectList(productManager.GetAll(), nameof(Product.Id), nameof(Product.ProductName));
             Categories = new SelectList(catagoryManager.GetAll(), nameof(Category.Id), nameof(Category.CategoryName));
             Suppliers = new SelectList(supplierManager.GetAll(), nameof(Supplier.Id), nameof(Supplier.CompanyName));
             Taxs = new SelectList(taxManager.GetAll(), nameof(Tax.Id), nameof(Tax.TaxType));
 
             ProductsWeb = new List<ProductDTO>();
+
+
             HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create($"https://localhost:7210/api/Product");
             httpWebRequest.Method = "GET";
 
@@ -88,19 +92,19 @@ namespace MarketApp.WebApp.Pages.Shared
             }
             var products = JsonSerializer.Deserialize<List<ProductDTO>>(Products, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
             IList<ProductDTO> list = mapper.Map<IList<ProductDTO>>(products);
-            var taxsList = taxManager.GetAll();
-            var supplierList = supplierManager.GetAll();
-            var categoryList = catagoryManager.GetAll();
+            
 
             ProductsWeb = list.ToList();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var product = productManager.GetAll(p => p.Id == Input.ProductName);
+            //Seçilen ürünün ID si ile ýnputtan gelen nesne eþleþtirildi.
+            var product = productManager.GetAll(p => p.Id == Input.ProductID);
 
+            //Güncellenen deðerler için yeni product nesnesi oluþturuldu.
             var newProduct = CreateProduct();
-            newProduct.Id = Input.ProductName;
+            newProduct.Id = Input.ProductID;
             newProduct.ProductName = product[0].ProductName;
             newProduct.ProductDescirption = Input.ProductDescirption;
             newProduct.CategoryID = Input.CategoryID;
@@ -111,18 +115,7 @@ namespace MarketApp.WebApp.Pages.Shared
             newProduct.UnitPrice = Input.UnitPrice;
             newProduct.UnitsInStock = Input.UnitsInStock;
             newProduct.Discontinued = Input.Discontinued;
-            //            "id": 9,
-            //  "productName": "Kola",
-            //  "productDescirption": "GazlýÝçecek2",
-            //  "supplierID": 2,
-            //  "categoryID": 11,
-            //  "taxId": 2,
-            //  "quantityPerUnit": "1Paket1Adet",
-            //  "unitPrice": 2,
-            //  "msrp": 2,
-            //  "unitsInStock": 50,
-            //  "discontinued": true
-            //}'
+            
 
             if (ModelState.IsValid)
             {

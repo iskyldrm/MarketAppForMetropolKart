@@ -1,9 +1,13 @@
 ﻿namespace MarketApp.API.Models
 {
+
+    /// <summary>
+    /// Produck nesnesini Listeleme için kullanılan DTO MODEL
+    /// </summary>
     public class ProductDTO
     {
         public int Id { get; set; }
-       
+
         public string? SKU { get; set; }
 
         public string ProductName { get; set; }
@@ -25,13 +29,5 @@
         public short? UnitsInStock { get; set; }
 
         public bool Discontinued { get; set; }
-
-        //public DateTime ProductionTime { get; set; }
-
-        //public DateTime ExpirationTime { get; set; }
-
-        //public DateTime CreatTime { get; set; }
-
-        //public DateTime UpdateTime { get; set; }
     }
 }

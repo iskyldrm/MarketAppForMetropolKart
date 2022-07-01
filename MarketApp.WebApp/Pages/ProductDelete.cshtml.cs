@@ -38,6 +38,7 @@ namespace MarketApp.WebApp.Pages
 
         public class InputModel
         {
+            //Seçilencek ürünün ID si
             public int Id { get; set; }
         }
 
@@ -45,6 +46,7 @@ namespace MarketApp.WebApp.Pages
         public void OnGet()
         {
             ProductsWeb = new List<ProductDTO>();
+            #region Delete REST API
             HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create($"https://localhost:7210/api/Product");
             httpWebRequest.Method = "GET";
 
@@ -59,21 +61,21 @@ namespace MarketApp.WebApp.Pages
 
             }
             var products = JsonSerializer.Deserialize<List<ProductDTO>>(Products, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            IList<ProductDTO> list = mapper.Map<IList<ProductDTO>>(products);
-            var taxsList = taxManager.GetAll();
-            var supplierList = supplierManager.GetAll();
-            var categoryList = catagoryManager.GetAll();
+            IList<ProductDTO> list = mapper.Map<IList<ProductDTO>>(products); 
+            #endregion
+
 
             ProductsWeb = list.ToList();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
+            //Post edildikten sonra Produck nesnesinin geitirlmesi
             var product = productManager.Find(Input.Id);
 
             if (ModelState.IsValid)
             {
-
+                //Gerekli rest serialize
                 var ProductJson = JsonSerializer.Serialize(product, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
 
                 HttpClient http = new HttpClient();
@@ -83,7 +85,7 @@ namespace MarketApp.WebApp.Pages
                 };
                 var result = await http.SendAsync(httpMessage);
             }
-
+            //Silme iþleminden sonra delete page nin getirilmesi getirilmesi
             return RedirectToPage("/ProductDelete", new { area = "" });
         }
         

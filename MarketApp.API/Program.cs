@@ -1,22 +1,18 @@
 using AutoMapper;
 using MarketApp.API.AutoMapper;
+using MarketApp.API.Extensions;
 using MarketApp.BL.Abstract;
 using MarketApp.BL.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-builder.Services.AddScoped<ITaxManager, TaxManager>();
-builder.Services.AddScoped<IProductManager, ProductManager>();
-builder.Services.AddScoped<ISupplierManager, SupplierManager>();
-builder.Services.AddScoped<ICatagoryManager, CategoryManager>();
-builder.Services.AddScoped<ITaxManager, TaxManager>();
-builder.Services.AddAutoMapper(typeof(ProductMapping));
+// MarketExtension eklendi
+builder.Services.AddMarketManagerService();
 
 
 builder.Services.AddEndpointsApiExplorer();
+
+//API METODTLARININ APP PROJESÝ OLAMADAN KULLANILMASI ÝÇÝN AÇIK BIRAKTIM.
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();

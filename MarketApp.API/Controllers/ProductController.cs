@@ -4,10 +4,11 @@ using MarketApp.BL.Abstract;
 using MarketApp.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace MarketApp.API.Controllers
 {
+    /// <summary>
+    /// Bu Controller Product için gerekli Ekle/Sil/Güncelle/Listeleme/Filtreleme işlemleri için gerekli metodları barındırır.
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ProductController : ControllerBase
@@ -18,6 +19,7 @@ namespace MarketApp.API.Controllers
         private readonly ISupplierManager supplierManager;
         private readonly ITaxManager taxManager;
 
+        // Gerekli ve gerekebilecek manager sınıfları inject edilmiştir.
         public ProductController
             (IProductManager productManager,
             IMapper mapper,
@@ -32,9 +34,11 @@ namespace MarketApp.API.Controllers
             this.taxManager = taxManager;
         }
         // GET: api/<ProductController>
+        // Get Metod manager projesinden gelen productmanager ile databaseden productlar getirilmiştir.
         [HttpGet]
         public IActionResult GetProducts(string? input = null)
         {
+            // Eğer arama inputundan değer gelmezse çalışacak olan kısım
             if (input==null)
             {
                 var urunler = productManager.GetAllInclude(null, p => p.Supplier, p => p.Category, p => p.Kdv).ToList();
@@ -46,6 +50,7 @@ namespace MarketApp.API.Controllers
 
                 return Ok(list);
             }
+            //Arama kısmına parametre girilir ve input!=null olursa çalaışacak olan sorgu.
             else
             {
                 var urunler = productManager.GetAllInclude
@@ -66,6 +71,7 @@ namespace MarketApp.API.Controllers
         }
 
         // GET api/<ProductController>/5
+        // ID parametresi ile ürün arama yapılmış gelen sonuç ile FROMBODY den silme işlemi yapılmıştır.
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
@@ -74,7 +80,7 @@ namespace MarketApp.API.Controllers
         }
 
         // POST api/<ProductController>
-        // https://localhost:7210/api/Product
+        // Frombody den gelen product ile Post metodunda add işlemi yapılmıştır. Ürün ekleme için çalışır.
         [HttpPost]
         public IActionResult Add([FromBody]Product  product)
         {
@@ -84,6 +90,7 @@ namespace MarketApp.API.Controllers
         }
 
         // PUT api/<ProductController>/5
+        //Güncelleme işlemi için çalıştırılır.
         [HttpPut]
         public IActionResult Update([FromBody] Product product)
         {
@@ -93,6 +100,7 @@ namespace MarketApp.API.Controllers
         }
 
         // DELETE api/<ProductController>/5
+        // Delete işlemi FromBody den gelen entityi silme işlemi yapar.
         [HttpDelete]
         public IActionResult Delete([FromBody]Product product)
         {

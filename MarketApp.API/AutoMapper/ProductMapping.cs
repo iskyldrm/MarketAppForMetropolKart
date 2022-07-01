@@ -6,6 +6,9 @@ namespace MarketApp.API.AutoMapper
 {
     public class ProductMapping:Profile
     {
+        /// <summary>
+        /// Listeleme için gerekli mapping işlemi. İlişkili ID ler yerine İlişkili name ler gelmesi için.
+        /// </summary>
         public ProductMapping()
         {
             CreateMap<Product, ProductDTO>()

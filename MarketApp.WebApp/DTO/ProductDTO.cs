@@ -1,5 +1,8 @@
 ﻿namespace MarketApp.WebApp.DTO
 {
+    /// <summary>
+    /// Produck nesnesini Listeleme için kullanılan DTO MODEL
+    /// </summary>
     public class ProductDTO
     {
         public int Id { get; set; }

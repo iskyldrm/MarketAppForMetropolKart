@@ -72,6 +72,7 @@ namespace MarketApp.WebApp.Pages
         }
         public async Task<IActionResult> OnPostAsync()
         {
+            //Bu kod parçasý eklenen ürün için gerekli eþletirmeyi yapmaktadýr.
             var product = CreateProduct();
             product.ProductName = Input.ProductName;
             product.ProductDescirption = Input.ProductDescirption;
@@ -84,15 +85,18 @@ namespace MarketApp.WebApp.Pages
             product.UnitsInStock = Input.UnitsInStock;
             product.Discontinued = Input.Discontinued;
 
+            //Gelen model geçerli bir model ise çalýþacaktýr.
             if (ModelState.IsValid)
             {
-
+                //Gelen data serialize edilip Post metodu için REST API çaðrýlacaktýr.
                 var ProductJson = JsonSerializer.Serialize(product, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
              
                 var data = new StringContent(ProductJson, Encoding.UTF8, "application/json");
 
                 using var client = new HttpClient();
 
+                //REST API POST METODU
+                //Data bodye gönderildi.
                 var response = await client.PostAsync($"https://localhost:7210/api/Product", data);
 
                 //string result = response.Content.ReadAsStringAsync().Result;
@@ -100,6 +104,11 @@ namespace MarketApp.WebApp.Pages
 
             return RedirectToPage("/Index", new { area = "" });
         }
+        /// <summary>
+        /// Activator kullanýlarak Instance alma
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"></exception>
         private Product CreateProduct()
         {
             try
