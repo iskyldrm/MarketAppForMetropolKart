@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MarketApp.BL.Abstract;
+using MarketApp.Entities.Concrete;
 using MarketApp.WebApp.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -32,31 +33,53 @@ namespace MarketApp.WebApp.Pages
             this.supplierManager = supplierManager;
             this.taxManager = taxManager;
         }
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
+        
+
         public List<ProductDTO> ProductsWeb { get; set; }
 
         public void OnGet()
         {
-            ProductsWeb = new List<ProductDTO>();   
-            HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create($"https://localhost:7210/api/Product");
-            httpWebRequest.Method = "GET";
+            ProductsWeb = new List<ProductDTO>();
+                HttpWebRequest httpWebRequest = (HttpWebRequest)HttpWebRequest.Create($"https://localhost:7210/api/Product");
+                httpWebRequest.Method = "GET";
 
-            string Products = string.Empty;
-            using (HttpWebResponse response1 = (HttpWebResponse)httpWebRequest.GetResponse())
+                string Products = string.Empty;
+                using (HttpWebResponse response1 = (HttpWebResponse)httpWebRequest.GetResponse())
+                {
+                    Stream stream = response1.GetResponseStream();
+                    StreamReader reader = new StreamReader(stream);
+                    Products = reader.ReadToEnd();
+                    reader.Close();
+                    stream.Close();
+
+                }
+                var products = JsonSerializer.Deserialize<List<ProductDTO>>(Products, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                IList<ProductDTO> list = mapper.Map<IList<ProductDTO>>(products);
+            if (!string.IsNullOrEmpty(SearchString))
             {
-                Stream stream = response1.GetResponseStream();
-                StreamReader reader = new StreamReader(stream);
-                Products = reader.ReadToEnd();
-                reader.Close();
-                stream.Close();
+                httpWebRequest = (HttpWebRequest)HttpWebRequest.Create($"https://localhost:7210/api/Product?input={SearchString}");
+                httpWebRequest.Method = "GET";
 
+                Products = string.Empty;
+                using (HttpWebResponse response1 = (HttpWebResponse)httpWebRequest.GetResponse())
+                {
+                    Stream stream = response1.GetResponseStream();
+                    StreamReader reader = new StreamReader(stream);
+                    Products = reader.ReadToEnd();
+                    reader.Close();
+                    stream.Close();
+
+                }
+                products = JsonSerializer.Deserialize<List<ProductDTO>>(Products, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                list = mapper.Map<IList<ProductDTO>>(products);
             }
-            var products = JsonSerializer.Deserialize<List<ProductDTO>>(Products, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            IList<ProductDTO> list = mapper.Map<IList<ProductDTO>>(products);
-            var taxsList = taxManager.GetAll();
-            var supplierList = supplierManager.GetAll();
-            var categoryList = catagoryManager.GetAll();
 
             ProductsWeb = list.ToList();
+            
+
         }
+        
     }
 }

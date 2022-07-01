@@ -1,46 +1,63 @@
-﻿@page
+﻿@page "{searchString?}"
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
+
 <div class="text-center">
+    <form>
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" class="form-control form-control-lg" asp-for="SearchString" placeholder="İsim yada Kategori" />
+                    </td>
+                    <td>
+                        <input type="submit" class=" btn btn-lg btn-success"  value="Ara" />
+                    </td>
+                </tr>
+            </table>
+             
+            
+        </div>
+    </form>
     <table class="table">
-    <thead>
-        <tr>
-            
-            <td>SKU Barkod</td>
-            <td>Ürün İsmi</td>
-            <td>Kategori</td>
-            <td>Ürün Açıklaması</td>
-            <td>Tefarikçi</td>
-            <td>KDV Tipi</td>
-            <td>Tavsiye E.S.F</td>
-            <td>Fiyat</td>
-            <td>Stok Adedi</td>
-            <td>Paket İçeriği</td>
-            <td>Satış Durumu</td>
-
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach(var item in Model.ProductsWeb)
-        {
-            
+        <thead>
             <tr>
-                <td>@item.SKU</td>
-                <td>@item.ProductName</td>
-                <td>@item.ProductDescirption</td>
-                <td>@item.CategoryID</td>
-                <td>@item.SupplierID</td>
-                <td>@item.TaxId</td>
-                <td>@item.MSRP</td>
-                <td>@item.UnitPrice</td>
-                <td>@item.UnitsInStock</td>
-                <td>@item.QuantityPerUnit</td>
-                @{
-                    if (item.Discontinued==true)
+
+                <td>SKU Barkod</td>
+                <td>Ürün İsmi</td>
+                <td>Kategori</td>
+                <td>Ürün Açıklaması</td>
+                <td>Tefarikçi</td>
+                <td>KDV Tipi</td>
+                <td>Tavsiye E.S.F</td>
+                <td>Fiyat</td>
+                <td>Stok Adedi</td>
+                <td>Paket İçeriği</td>
+                <td>Satış Durumu</td>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.ProductsWeb)
+            {
+
+                <tr>
+                    <td>@item.SKU</td>
+                    <td>@item.ProductName</td>
+                    <td>@item.ProductDescirption</td>
+                    <td>@item.CategoryID</td>
+                    <td>@item.SupplierID</td>
+                    <td>@item.TaxId</td>
+                    <td>@item.MSRP</td>
+                    <td>@item.UnitPrice</td>
+                    <td>@item.UnitsInStock</td>
+                    <td>@item.QuantityPerUnit</td>
+                    @{
+                        if (item.Discontinued == true)
                         {
                             <td>Satışta</td>
                         }
@@ -48,11 +65,11 @@
                         {
                             <td>Satışı Yok</td>
                         }
-                    
-                }
-                
-            </tr>
-        }
-    </tbody>
-</table>
+
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

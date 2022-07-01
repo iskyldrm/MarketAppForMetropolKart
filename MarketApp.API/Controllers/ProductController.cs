@@ -33,16 +33,36 @@ namespace MarketApp.API.Controllers
         }
         // GET: api/<ProductController>
         [HttpGet]
-        public IActionResult GetProducts()
+        public IActionResult GetProducts(string? input = null)
         {
-            var urunler = productManager.GetAllInclude(null, p => p.Supplier, p => p.Category,p=>p.Kdv).ToList();
-            IList<ProductDTO> list = mapper.Map<IList<ProductDTO>>(urunler);
+            if (input==null)
+            {
+                var urunler = productManager.GetAllInclude(null, p => p.Supplier, p => p.Category, p => p.Kdv).ToList();
+                IList<ProductDTO> list = mapper.Map<IList<ProductDTO>>(urunler);
 
-            var taxsList = taxManager.GetAll();
-            var supplierList = supplierManager.GetAll();
-            var categoryList = catagoryManager.GetAll();
+                var taxsList = taxManager.GetAll();
+                var supplierList = supplierManager.GetAll();
+                var categoryList = catagoryManager.GetAll();
 
-            return Ok(list);
+                return Ok(list);
+            }
+            else
+            {
+                var urunler = productManager.GetAllInclude
+                    (p=>p.ProductName.Contains(input) || 
+                    p.Category.CategoryName.Contains(input), 
+                    p => p.Supplier, 
+                    p => p.Category, 
+                    p => p.Kdv).ToList();
+                IList<ProductDTO> list = mapper.Map<IList<ProductDTO>>(urunler);
+
+                var taxsList = taxManager.GetAll();
+                var supplierList = supplierManager.GetAll();
+                var categoryList = catagoryManager.GetAll();
+
+                return Ok(list);
+            }
+            
         }
 
         // GET api/<ProductController>/5
