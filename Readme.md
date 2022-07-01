@@ -28,7 +28,7 @@ yazabilir misiniz?** <br/><br/>
 --Image sınıfı eklenmiş yalnız çalıştırılmasında sıkıntı çıkabileceği için aynı zamanda 
 zaman problemi nedeni sebebi ile geliştirilmemiştir.
 
---Database scripti Ekler klasörüne eklenmiştir.
+--Database scripti MarketAppForMetropolKart/MarketApp.WebApp/wwwroot/Scripts klasörüne eklenmiştir.
 
 --MarketApp adında database oluşturularak çalıştırılması yeterli olacaktır.(localdb)\mssqllocaldb server name
 
