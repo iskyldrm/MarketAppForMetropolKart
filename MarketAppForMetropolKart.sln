@@ -16,7 +16,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ekler", "Ekler", "{08C0D60B-A738-4555-BF01-17E37C2EA04B}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\OneDrive\Masaüstü\MarketAppMK.sql = ..\..\..\OneDrive\Masaüstü\MarketAppMK.sql
-		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "img", "img", "{68356C21-5BA1-4142-88B0-0D734E43B5C9}"
