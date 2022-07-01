@@ -19,6 +19,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ekler", "Ekler", "{08C0D60B
 		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "img", "img", "{68356C21-5BA1-4142-88B0-0D734E43B5C9}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\OneDrive\Masaüstü\Ürün ekleme.png = ..\..\..\OneDrive\Masaüstü\Ürün ekleme.png
+		..\..\..\OneDrive\Masaüstü\Ürün güncelleme.png = ..\..\..\OneDrive\Masaüstü\Ürün güncelleme.png
+		..\..\..\OneDrive\Masaüstü\Ürün listleme ve Arama.png = ..\..\..\OneDrive\Masaüstü\Ürün listleme ve Arama.png
+		..\..\..\OneDrive\Masaüstü\Ürün silme.png = ..\..\..\OneDrive\Masaüstü\Ürün silme.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +56,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{68356C21-5BA1-4142-88B0-0D734E43B5C9} = {08C0D60B-A738-4555-BF01-17E37C2EA04B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4519831E-79EC-4D56-9A52-2677EF816EF1}
