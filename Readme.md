@@ -41,5 +41,9 @@ zaman problemi nedeni sebebi ile geliştirilmemiştir.
 --Zaman problemi yüzünden SOLİD prensiplere mümkün olduğu kadar uyulmuştur.
 
 ## Proje Görselleri <br/>
+**Ürün Ekleme
 ![resim1](https://github.com/iskyldrm/MarketAppForMetropolKart/blob/master/MarketApp.WebApp/wwwroot/img/%C3%9Cr%C3%BCn%20ekleme.png?raw=true)
+![resim2](https://github.com/iskyldrm/MarketAppForMetropolKart/blob/master/MarketApp.WebApp/wwwroot/img/%C3%9Cr%C3%BCn%20g%C3%BCncelleme.png?raw=true)
+![resim3](https://github.com/iskyldrm/MarketAppForMetropolKart/blob/master/MarketApp.WebApp/wwwroot/img/%C3%9Cr%C3%BCn%20listleme%20ve%20Arama.png?raw=true)
+![resim4](https://github.com/iskyldrm/MarketAppForMetropolKart/blob/master/MarketApp.WebApp/wwwroot/img/%C3%9Cr%C3%BCn%20silme.png?raw=true)
 
