@@ -9,9 +9,9 @@
 
 **Kullandığınız teknoloji ve kütüphaneler hakkında daha önce tecrübeniz oldu mu? Tek tek
 yazabilir misiniz?** <br/><br/>
---Geliştirilenen projenin REST çağrıları için WEB API ve bu çağrıalrın karşılanması için RAZOR PAGES kullanılmuştır. <br/>
---.NET Core çatısı altından geliştirdiğim projemde Microsoft.Entityframeworkcore teknolojisi kullanılmıtır. <br/>
---CodeFirst yaklaşımı ile geliştirilen entity katmanında migration kullanılmış. Bu çalışma için  Microsoft.Entityframeworkcore.Tools ile migration providerları kullanılmıştır. <br/> --Database providerları için  Microsoft.Entityframeworkcore.SqlServer kullanılmıştır. <br/> -- Web App katmanından gelen ınputlar ve gidecek veriler için mapping işlemi için Automapper ve automapper.extensions.Microsof.DependencyInjection teknolojileri kullanılmıştır. <br/><br/> 
+--Geliştirilenen projenin REST çağrıları için WEB API ve bu çağrıların karşılanması için RAZOR PAGES kullanılmıştır. <br/>
+--.NET Core çatısı altından geliştirdiğim projemde Microsoft.Entityframeworkcore teknolojisi kullanılmıştır. <br/>
+--CodeFirst yaklaşımı ile geliştirilen entity katmanında migration kullanılmıştır. Bu çalışma için  Microsoft.Entityframeworkcore.Tools ile migration providerları kullanılmıştır. <br/> --Database providerları için  Microsoft.Entityframeworkcore.SqlServer kullanılmıştır. <br/> -- Web App katmanından gelen inputlar ve gidecek veriler için mapping işlemi için Automapper ve automapper.extensions.Microsof.DependencyInjection teknolojileri kullanılmıştır. <br/><br/> 
 **Daha geniş vaktiniz olsaydı projeye neler eklemek isterdiniz?**<br/><br/>
 --Projemde IDENTITY SERVER teknolojisini kullanmak istiyordum.<br/>
 --Resim işlemlerini kullanmak istiyordum. Bir CDN servisi eklemek isterdim.<br/>
